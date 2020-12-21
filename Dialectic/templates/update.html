@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+{% block head_title %} Dialectic - Update page {% endblock %}
+
+{% block content %}
+
+
+    <h1>{{title}} is working!</h1>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" name="Update">
+    </form>
+    
+
+{% endblock %}

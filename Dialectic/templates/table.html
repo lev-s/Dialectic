@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+
+{% block head_title %} Dialectic - Schedule page {% endblock %}
+
+{% block content %}
+<div style="background-color: black; opacity: 0.8; padding: 80px; color: white;">
+
+    <h1 style="text-align: center; text-transform: uppercase; letter-spacing: 3px; font-size: 40px;">Table</h1>
+
+    <p style="font-size: 30px; text-align: center;">Table of daily glucose dozes</p>
+    
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Updated</th>
+            <th>Night</th>
+            <th>Morning</th>
+            <th>Daytime</th>
+            <th>Evening</th>
+            <th>Before Sleep</th>
+            <th>Notes</th>
+        </tr>
+        {% for obj in objectList %}
+        <tr class="table-data">
+            <td><a href="{% url 'update' obj.id %}" style="color: #a1a1a1;">{{obj.date}}</a></td>
+            <td>{{obj.updated}}</td>
+            <td>{{obj.night}}</td>
+            <td>{{obj.morning}}</td>
+            <td>{{obj.daytime}}</td>
+            <td>{{obj.evening}}</td>
+            <td>{{obj.beforeSleep}}</td>
+            <td>{{obj.notes}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <div style="margin-top: 30px; font-size: 15px; text-align: center;">
+        <form method="POST" action="" style="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" name="Save">
+        </form>
+    </div>
+</div>
+{% endblock %}
